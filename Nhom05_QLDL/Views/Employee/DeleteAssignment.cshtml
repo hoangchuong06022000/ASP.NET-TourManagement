@@ -1,0 +1,46 @@
+﻿@model Model.Model.PHANBONHANVIEN
+
+@{
+    ViewBag.Title = "DeleteAssignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MANV)
+    @Html.HiddenFor(model => model.MADOAN)
+
+    <div class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xoá Phân Công này không?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nhân Viên: </label>
+                        @Html.DisplayFor(model => model.TENNV)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Đoàn: </label>
+                        @Html.DisplayFor(model => model.MADOAN)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nhiệm Vụ: </label>
+                        @Html.DisplayFor(model => model.NHIEMVU)
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("Employee", "Employee")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

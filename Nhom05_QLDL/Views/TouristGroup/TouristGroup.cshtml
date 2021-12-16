@@ -1,0 +1,198 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "TouristGroup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+        <a href="https://localhost:44317/" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                <img src="../assets/img/logo-small.png">
+            </div>
+        </a>
+        <a href="https://localhost:44317/" class="simple-text logo-normal">
+            Quản Lý Du Lịch
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="active-pro">
+                <a href="https://localhost:44317/">
+                    <i class='fa fa-plane'></i>
+                    <p>Tour</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="https://localhost:44317/TouristGroup/TouristGroup">
+                    <i class='fa fa-group'></i>
+                    <p>Đoàn Du Lịch</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/Tourist/Tourist">
+                    <i class='fa fa-street-view'></i>
+                    <p>Khách Du Lịch</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/Employee/Employee">
+                    <i class='fa fa-user'></i>
+                    <p>Nhân Viên</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/Statitic/Statitic">
+                    <i class="fa fa-line-chart"></i>
+                    <p>Thống kê</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+                <a class="navbar-brand" href="javascript:;">ĐOÀN DU LỊCH</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <form>
+                    <div class="input-group no-border">
+                        <input type="text" value="" class="form-control" placeholder="Tìm kiếm...">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <i class="nc-icon nc-zoom-split"></i>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Quản Lý Đoàn</h4>
+                    </div>
+                    <div class="row-sm-4">
+                        <a href="" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>Mã Đoàn</th>
+                                    <th>Tên Tour</th>
+                                    <th>Khởi Hành</th>
+                                    <th>Kết Thúc</th>
+                                    <th>Doanh Thu</th>
+                                    <th>Hành Trình</th>
+                                    <th>Khách Sạn</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.DOANDULICH doan in Model.DOANDULICH)
+                                    {
+                                        foreach (Model.Model.NOIDUNG noiDung in Model.NOIDUNG)
+                                        {
+                                            if (doan.MADOAN.Equals(noiDung.MADOAN))
+                                            {
+                                                <tr>
+                                                    <td>@doan.MADOAN</td>
+                                                    <td>@doan.TENTOUR</td>
+                                                    <td>@doan.NGAYKHOIHANH</td>
+                                                    <td>@doan.NGAYKETTHUC</td>
+                                                    <td>@doan.DOANHTHU</td>
+                                                    <td>@noiDung.HANHTRINH</td>
+                                                    <td>@noiDung.KHACHSAN</td>
+                                                    <td class="text-center">
+                                                        <a href="" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @Html.ActionLink("Details", "TouristGroup", new { maDoan = doan.MADOAN })
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <h4 class="card-title">Chi Tiết Đoàn</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                        <a href="@Url.Action("LoaiChiPhi", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-usd"></i> Loại Chi Phí</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>Mã Đoàn</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Vai Trò KH</th>
+                                    <th>Tên Chi Phí</th>
+                                    <th>Số Tiền</th>
+                                    <th></th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.CHITIETDOAN ctDoan in Model.CHITIETDOAN)
+                                    {
+                                        foreach (Model.Model.CHIPHI chiPhi in Model.CHIPHI)
+                                        {
+                                            if (ctDoan.MADOAN.Equals(chiPhi.MADOAN))
+                                            {
+                                                <tr>
+                                                    <td>@ctDoan.MADOAN</td>
+                                                    <td>@ctDoan.TENKH</td>
+                                                    <td>@ctDoan.VAITROKH</td>
+                                                    <td>@chiPhi.TENLOAICHIPHI</td>
+                                                    <td>@chiPhi.SOTIEN</td>
+                                                    <td class="text-center">
+                                                        <a href="" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

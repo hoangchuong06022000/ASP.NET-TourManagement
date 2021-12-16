@@ -1,0 +1,42 @@
+﻿@model Model.Model.LOAICHIPHI
+
+@{
+    ViewBag.Title = "EditLoaiCP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MACHIPHI)
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Chỉnh Sửa</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tên Loại Chi Phí</label>
+                        @Html.EditorFor(model => model.TENLOAICHIPHI, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TENLOAICHIPHI, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("LoaiChiPhi", "TouristGroup")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Sửa" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

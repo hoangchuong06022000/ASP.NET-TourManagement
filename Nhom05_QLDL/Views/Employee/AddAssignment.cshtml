@@ -1,0 +1,52 @@
+﻿@model Model.Model.PHANBONHANVIEN
+
+@{
+    ViewBag.Title = "AddAssignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm Mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nhân Viên</label>
+                    <div>
+                        @Html.DropDownListFor(model => model.MANV, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Đoàn</label>
+                    <div>
+                        @Html.DropDownListFor(model => model.MADOAN, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MADOAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nhiệm Vụ</label>
+                    @Html.EditorFor(model => model.NHIEMVU, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NHIEMVU, "", new { @class = "text-danger" })
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="@Url.Action("Employee", "Employee")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                        <input type="submit" value="Thêm" class="btn btn-default" style="background-color: #51bcda;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

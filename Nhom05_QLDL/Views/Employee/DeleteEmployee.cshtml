@@ -1,0 +1,40 @@
+﻿@model Model.Model.NHANVIEN
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MANV)
+
+    <div class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xoá Nhân Viên này không?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã Nhân Viên: </label>
+                        @Html.DisplayFor(model => model.MANV)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tên Nhân Viên: </label>
+                        @Html.DisplayFor(model => model.TENNV)
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("Employee", "Employee")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,169 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="sidebar" data-color="white" data-active-color="danger">
+    <div class="logo">
+        <a href="https://localhost:44317/" class="simple-text logo-mini">
+            <div class="logo-image-small">
+                <img src="../assets/img/logo-small.png">
+            </div>
+        </a>
+        <a href="https://localhost:44317/" class="simple-text logo-normal">
+            Quản Lý Du Lịch
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="active-pro">
+                <a href="https://localhost:44317/">
+                    <i class='fa fa-plane'></i>
+                    <p>Tour</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/TouristGroup/TouristGroup">
+                    <i class='fa fa-group'></i>
+                    <p>Đoàn Du Lịch</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/Tourist/Tourist">
+                    <i class='fa fa-street-view'></i>
+                    <p>Khách Du Lịch</p>
+                </a>
+            </li>
+            <li class="active">
+                <a href="https://localhost:44317/Employee/Employee">
+                    <i class='fa fa-user'></i>
+                    <p>Nhân Viên</p>
+                </a>
+            </li>
+            <li class="active-pro">
+                <a href="https://localhost:44317/Statitic/Statitic">
+                    <i class="fa fa-line-chart"></i>
+                    <p>Thống kê</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+                <a class="navbar-brand" href="javascript:;">NHÂN VIÊN</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+                <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <form>
+                    <div class="input-group no-border">
+                        <input type="text" value="" class="form-control" placeholder="Tìm kiếm...">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <i class="nc-icon nc-zoom-split"></i>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Quản Lý Nhân Viên</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("AddEmployee", "Employee")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Mã Nhân Viên</th>
+                                <th>Tên Nhân Viên</th>
+                                <th></th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.NHANVIEN nv in Model.NHANVIEN)
+                                    {
+                                        <tr>
+                                            <td>@nv.MANV</td>
+                                            <td>@nv.TENNV</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditEmployee", "Employee", new { maNV = @nv.MANV })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteEmployee", "Employee", new { maNV = @nv.MANV })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Phân Công</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("AddAssignment", "Employee")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Tên Nhân Viên</th>
+                                <th>Đoàn</th>
+                                <th>Nhiệm Vụ</th>
+                                <th></th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.PHANBONHANVIEN pbNV in Model.PHANBONHANVIEN)
+                                    {
+                                        <tr>
+                                            <td>@pbNV.TENNV</td>
+                                            <td>@pbNV.MADOAN</td>
+                                            <td>@pbNV.NHIEMVU</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditAssignment", "Employee", new { maNV = @pbNV.MANV, maDoan = @pbNV.MADOAN })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteAssignment", "Employee", new { maNV = @pbNV.MANV, maDoan = @pbNV.MADOAN })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>               
+</div>

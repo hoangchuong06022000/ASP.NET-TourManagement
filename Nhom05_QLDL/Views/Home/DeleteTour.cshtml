@@ -1,0 +1,49 @@
+﻿@model Model.Model.TOURDULICH
+
+@{
+    ViewBag.Title = "DeleteTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MATOUR)
+
+    <div class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xoá Tour này không?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã Tour: </label>
+                        @Html.DisplayFor(model => model.MATOUR)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tên Tour: </label>
+                        @Html.DisplayFor(model => model.TENGOI)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Đặc Điểm: </label>
+                        @Html.DisplayFor(model => model.DACDIEM)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Loại Hình: </label>
+                        @Html.DisplayFor(model => model.TENLOAITOUR)
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("Index", "Home")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,64 @@
+﻿@model Model.Model.KHACH
+
+@{
+    ViewBag.Title = "DeleteTourist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MAKH)
+
+    <div class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xoá Khách Hàng này không?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã Khách Hàng: </label>
+                        @Html.DisplayFor(model => model.MAKH)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Họ Tên: </label>
+                        @Html.DisplayFor(model => model.HOTEN)
+                    </div>
+
+                    <div class="form-group">
+                        <label>CMND: </label>
+                        @Html.DisplayFor(model => model.CMND)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa Chỉ: </label>
+                        @Html.DisplayFor(model => model.DIACHI)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Giới Tính: </label>
+                        @Html.DisplayFor(model => model.GIOITINH)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số Điện Thoại: </label>
+                        @Html.DisplayFor(model => model.SDT)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quốc Tịch: </label>
+                        @Html.DisplayFor(model => model.QUOCTICH)
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("Tourist", "Tourist")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

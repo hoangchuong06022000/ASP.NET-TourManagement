@@ -1,0 +1,59 @@
+﻿@model Model.Model.TOURDULICH
+
+@{
+    ViewBag.Title = "AddTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MATOUR)
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm Mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Mã Tour:  </label>
+                    @Html.DisplayFor(model => model.MATOUR)
+                </div>
+
+                <div class="form-group">
+                    <label>Tên Tour</label>
+                    @Html.EditorFor(model => model.TENGOI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TENGOI, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Đặc Điểm</label>
+                    @Html.EditorFor(model => model.DACDIEM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DACDIEM, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Loại Hình</label>
+                    <div>
+                        @Html.DropDownListFor(model => model.MALOAIHINH, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MALOAIHINH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="@Url.Action("Index", "Home")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                        <input type="submit" value="Thêm" class="btn btn-default" style="background-color: #51bcda;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

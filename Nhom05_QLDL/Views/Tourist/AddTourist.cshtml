@@ -1,0 +1,76 @@
+﻿@model Model.Model.KHACH
+@{
+    ViewBag.Title = "AddTourist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MAKH)
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm Mới</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Mã Khách Hàng:  </label>
+                    @Html.DisplayFor(model => model.MAKH)
+                </div>
+
+                <div class="form-group">
+                    <label>Họ Tên</label>
+                    @Html.EditorFor(model => model.HOTEN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HOTEN, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>CMND</label>
+                    @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Địa Chỉ</label>
+                    @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Giới Tính</label>
+                    @Html.EditorFor(model => model.GIOITINH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GIOITINH, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Số Điện Thoại</label>
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label>Quốc Tịch</label>
+                    @Html.EditorFor(model => model.QUOCTICH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.QUOCTICH, "", new { @class = "text-danger" })
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="@Url.Action("Tourist", "Tourist")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                        <input type="submit" value="Thêm" class="btn btn-default" style="background-color: #51bcda;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
