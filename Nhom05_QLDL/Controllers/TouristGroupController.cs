@@ -70,6 +70,7 @@ namespace Nhom05_QLDL.Controllers
 
         public ActionResult EditTouristGroup(string maDoan = "")
         {
+            DropDownListDoan();
             var doan = dalDoan.GetDoanById(maDoan);
             return View(doan);
         }
@@ -80,6 +81,7 @@ namespace Nhom05_QLDL.Controllers
             {
                 return RedirectToAction("TouristGroup");
             }
+            DropDownListDoan();
             return View();
         }
         public ActionResult DeleteTouristGroup(string maDoan = "")
@@ -104,7 +106,7 @@ namespace Nhom05_QLDL.Controllers
         [HttpGet]
         public ActionResult AddCTTouristGroup()
         {
-            DropDownListDoan();
+            DropDownListCTDoan();
             return View();
         }
         [HttpPost]
@@ -117,7 +119,7 @@ namespace Nhom05_QLDL.Controllers
                     return RedirectToAction("TouristGroup");
                 }
             }
-            DropDownListDoan();
+            DropDownListCTDoan();
             return View();
         }
 
