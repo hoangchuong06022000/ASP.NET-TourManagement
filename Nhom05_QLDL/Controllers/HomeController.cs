@@ -143,7 +143,7 @@ namespace Nhom05_QLDL.Controllers
         {
             if (dalCTTour.Delete(ctTour) == true)
             {
-                return RedirectToAction("DiaDiem");
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -277,12 +277,12 @@ namespace Nhom05_QLDL.Controllers
         }
         public void DropDownListGia(string selectedId = null)
         {
-            ViewBag.MATOUR = new SelectList(dalTour.GetAll(), "MaTour", "TenTour", selectedId);
+            ViewBag.MATOUR = new SelectList(dalTour.GetAll(), "MaTour", "TenGoi", selectedId);
         }
         [HttpGet]
         public ActionResult AddGiaTour()
         {
-            string newMaGia = nextMaLH();
+            string newMaGia = nextMaGiaTour();
             GIATOUR gia = new GIATOUR
             {
                 MAGIA = newMaGia,

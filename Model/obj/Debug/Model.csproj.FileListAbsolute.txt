@@ -21,3 +21,15 @@ C:\Users\Netpham1970\source\repos\Nhom05\Model\bin\Debug\EntityFramework.SqlServ
 C:\Users\Netpham1970\source\repos\Nhom05\Model\bin\Debug\EntityFramework.xml
 C:\Users\Netpham1970\source\repos\Nhom05\Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Netpham1970\source\repos\Nhom05\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\Model.dll.config
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\Model.dll
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\Model.pdb
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\EntityFramework.dll
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\EntityFramework.xml
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\obj\Debug\Model.dll
+C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Model\obj\Debug\Model.pdb
