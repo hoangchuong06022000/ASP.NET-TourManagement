@@ -1,45 +1,36 @@
-﻿@model Model.Model.DOANDULICH
+﻿@model Model.Model.CHIPHI
 
 @{
-    ViewBag.Title = "DeleteTouristGroup";
+    ViewBag.Title = "DeleteChiPhi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm())
 {
 @Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.MACHIPHI)
 @Html.HiddenFor(model => model.MADOAN)
 
 <div class="form-horizontal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Bạn có muốn xoá Đoàn Du Lịch này không?</h4>
+                <h4 class="modal-title">Bạn có muốn xoá Chi Phí này không?</h4>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <label>Chi Phí: </label>
+                    @Html.DisplayFor(model => model.TENLOAICHIPHI)
+                </div>
+
                 <div class="form-group">
                     <label>Mã Đoàn: </label>
                     @Html.DisplayFor(model => model.MADOAN)
                 </div>
 
                 <div class="form-group">
-                    <label>Tour: </label>
-                    @Html.DisplayFor(model => model.TENTOUR)
-                </div>
-
-                <div class="form-group">
-                    <label>Ngày Khởi Hành: </label>
-                    @Html.DisplayFor(model => model.NGAYKHOIHANH)
-                </div>
-
-                <div class="form-group">
-                    <label>Ngày Kết Thúc: </label>
-                    @Html.DisplayFor(model => model.NGAYKETTHUC)
-                </div>
-
-                <div class="form-group">
-                    <label>Doanh Thu: </label>
-                    @Html.DisplayFor(model => model.DOANHTHU)
+                    <label>Số Tiền: </label>
+                    @Html.DisplayFor(model => model.SOTIEN)
                 </div>
                 <div class="modal-footer">
                     <div class="form-group">
@@ -52,4 +43,3 @@
     </div>
 </div>
 }
-

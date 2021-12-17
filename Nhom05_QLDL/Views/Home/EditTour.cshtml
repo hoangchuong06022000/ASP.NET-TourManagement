@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label>Loại Hình</label>
                         <div>
-                            @Html.DropDownListFor(model => model.MALOAIHINH, null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.MALOAIHINH, null, htmlAttributes: new { @class = "form-control" } )
                             @Html.ValidationMessageFor(model => model.MALOAIHINH, "", new { @class = "text-danger" })
                         </div>
                     </div>

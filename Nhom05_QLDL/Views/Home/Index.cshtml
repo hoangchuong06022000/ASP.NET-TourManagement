@@ -91,25 +91,24 @@
                     <div class="card-header">
                         <h4 class="card-title"> Quản Lý Tour</h4>
                     </div>
-                    <div class="row-sm-4">
+                    <div class="col-sm-4">
                         <a href="@Url.Action("AddTour", "Home")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
-                        <a href="@Url.Action("LoaiHinh", "Home")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-list-ul"></i> Loại Hình</button></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Tour</th>
-                                    <th>Tên Tour</th>
-                                    <th>Đặc Điểm</th>
-                                    <th>Tên Loại Hình</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Tour</th>
+                                <th>Tên Tour</th>
+                                <th>Đặc Điểm</th>
+                                <th>Tên Loại Hình</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach (Model.Model.TOURDULICH tour in Model.TOURDULICH)
-                                    {                                                                                                                            
+                                    {
                                         <tr>
                                             <td>@tour.MATOUR</td>
                                             <td>@tour.TENGOI</td>
@@ -124,8 +123,9 @@
                                             <td class="text-center">
                                                 <a href="@Url.Action("DeleteTour", "Home", new { maTour = @tour.MATOUR })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
                                             </td>
-                                        </tr>                                           
-                                    }                                      
+                                        </tr>
+
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -137,47 +137,77 @@
                     <div class="card-header">
                         <h4 class="card-title">Chi Tiết Tour</h4>
                     </div>
-                    <div class="row-sm-4">
+                    <div class="col-sm-4">
                         <a href="@Url.Action("AddCTTour", "Home")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
-                        <a href="@Url.Action("DiaDiem", "Home")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-map-marker"></i> Địa Điểm</button></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Tour</th>
-                                    <th>Tên Địa Điểm</th>
-                                    <th>Thứ Tự</th>
-                                    <th>Thành Tiền</th>
-                                    <th>Bắt Đầu</th>
-                                    <th>Kết Thúc</th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Tour</th>
+                                <th>Tên Địa Điểm</th>
+                                <th>Thứ Tự</th>
+                                <th></th>
+                                <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach (Model.Model.CHITIETTOUR ctTour in Model.CHITIETTOUR)
                                     {
-                                        foreach (Model.Model.GIATOUR gia in Model.GIATOUR)
-                                        {
-                                            if (ctTour.MATOUR.Equals(gia.MATOUR))
-                                            {
-                                                <tr>
-                                                    <td>@ctTour.MATOUR</td>
-                                                    <td>@ctTour.TENDIADIEM</td>
-                                                    <td>@ctTour.THUTU</td>
-                                                    <td>@gia.THANHTIEN</td>
-                                                    <td>@gia.TG_BATDAU</td>
-                                                    <td>@gia.TG_KETTHUC</td>
-                                                    <td class="text-center">
-                                                        <a href="" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }
-                                    }
+                                        <tr>
+                                            <td>@ctTour.MATOUR</td>
+                                            <td>@ctTour.TENDIADIEM</td>
+                                            <td>@ctTour.THUTU</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditCTTour", "Home", new { maTour = ctTour.MATOUR, maDD = ctTour.MADIADIEM })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteCTTour", "Home", new { maTour = ctTour.MATOUR, maDD = ctTour.MADIADIEM }) " class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+                                     }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <h4 class="card-title">Bảng Giá Tour</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("AddGiaTour", "Home")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Mã Giá</th>
+                                <th>Tour</th>
+                                <th>Thành Tiền</th>
+                                <th>Bắt Đầu</th>
+                                <th>Kết Thúc</th>
+                                <th></th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.GIATOUR gia in Model.GIATOUR)
+                                    {
+                                        <tr>
+                                            <td>@gia.MAGIA</td>
+                                            <td>@gia.TENTOUR</td>
+                                            <td>@gia.THANHTIEN</td>
+                                            <td>@gia.TG_BATDAU</td>
+                                            <td>@gia.TG_KETTHUC</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditGiaTour", "Home", new { maGia = gia.MAGIA })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteGiaTour", "Home", new { maGia = gia.MAGIA })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+                                    }                                   
                                 </tbody>
                             </table>
                         </div>

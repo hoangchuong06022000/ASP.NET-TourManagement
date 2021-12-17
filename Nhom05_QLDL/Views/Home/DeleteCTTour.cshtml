@@ -1,0 +1,46 @@
+﻿@model Model.Model.CHITIETTOUR
+
+@{
+    ViewBag.Title = "DeleteCTTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.MATOUR)
+@Html.HiddenFor(model => model.MADIADIEM)
+
+<div class="form-horizontal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Bạn có muốn xoá Chi Tiết Tour này không?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Mã Tour: </label>
+                    @Html.DisplayFor(model => model.TENTOUR)
+                </div>
+
+                <div class="form-group">
+                    <label>Địa Điểm: </label>
+                    @Html.DisplayFor(model => model.TENDIADIEM)
+                </div>
+
+                <div class="form-group">
+                    <label>Thứ Tự: </label>
+                    @Html.DisplayFor(model => model.THUTU)
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <a href="@Url.Action("Index", "Home")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                        <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

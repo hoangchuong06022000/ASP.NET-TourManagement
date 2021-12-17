@@ -29,8 +29,10 @@ namespace Model.Model
             get { return TOURDULICH.TENGOI; }
         }
 
+        [DataType(DataType.Date)]
         public DateTime? NGAYKHOIHANH { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? NGAYKETTHUC { get; set; }
 
         public double DOANHTHU { get; set; }

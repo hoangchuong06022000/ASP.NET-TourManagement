@@ -16,12 +16,15 @@ namespace Model.Model
         [Required]
         [StringLength(4)]
         public string MATOUR { get; set; }
+        public string TENTOUR { get { return TOURDULICH.TENGOI; } }
 
         public double? THANHTIEN { get; set; }
 
-        public DateTime? TG_BATDAU { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ? TG_BATDAU { get; set; }
 
-        public DateTime? TG_KETTHUC { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ? TG_KETTHUC { get; set; }
 
         public virtual TOURDULICH TOURDULICH { get; set; }
     }

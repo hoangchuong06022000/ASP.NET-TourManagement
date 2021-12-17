@@ -223,6 +223,6 @@ C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\bin\System.Web.Mvc.xml
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.AssemblyReference.cache
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.CoreCompileInputs.cache
-C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.CopyComplete
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.dll
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.pdb
+C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.CopyComplete

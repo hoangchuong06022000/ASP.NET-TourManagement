@@ -1,7 +1,7 @@
-﻿@model Model.Model.DOANDULICH
+﻿@model Model.Model.NOIDUNG
 
 @{
-    ViewBag.Title = "DeleteTouristGroup";
+    ViewBag.Title = "DeleteNoiDung";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Bạn có muốn xoá Đoàn Du Lịch này không?</h4>
+                <h4 class="modal-title">Bạn có muốn xoá Nội Dung này không?</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -23,24 +23,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Tour: </label>
-                    @Html.DisplayFor(model => model.TENTOUR)
+                    <label>Hành Trình: </label>
+                    @Html.DisplayFor(model => model.HANHTRINH)
                 </div>
 
                 <div class="form-group">
-                    <label>Ngày Khởi Hành: </label>
-                    @Html.DisplayFor(model => model.NGAYKHOIHANH)
+                    <label>Khách sạn: </label>
+                    @Html.DisplayFor(model => model.KHACHSAN)
                 </div>
 
-                <div class="form-group">
-                    <label>Ngày Kết Thúc: </label>
-                    @Html.DisplayFor(model => model.NGAYKETTHUC)
-                </div>
-
-                <div class="form-group">
-                    <label>Doanh Thu: </label>
-                    @Html.DisplayFor(model => model.DOANHTHU)
-                </div>
                 <div class="modal-footer">
                     <div class="form-group">
                         <a href="@Url.Action("TouristGroup", "TouristGroup")" class="add"><button type="button" class="btn">Huỷ</button></a>
@@ -52,4 +43,3 @@
     </div>
 </div>
 }
-

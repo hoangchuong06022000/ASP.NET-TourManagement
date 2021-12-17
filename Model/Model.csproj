@@ -64,7 +64,6 @@
     <Compile Include="DAL\DAL_PhanBoNhanVien.cs" />
     <Compile Include="DAL\DAL_Tour.cs" />
     <Compile Include="DAL\Tool.cs" />
-    <Compile Include="Model\BANGGIA.cs" />
     <Compile Include="Model\CHIPHI.cs" />
     <Compile Include="Model\CHITIETDOAN.cs" />
     <Compile Include="Model\CHITIETTOUR.cs" />

@@ -9,7 +9,7 @@ using System.Dynamic;
 
 namespace Nhom05_QLDL.Controllers
 {
-    // Còn Chi Tiet Tour + Gia Tour
+    // Done
     public class HomeController : Controller
     {
         private DAL_Tour dalTour = new DAL_Tour();
@@ -96,16 +96,56 @@ namespace Nhom05_QLDL.Controllers
         }
         public void DropDownListCTtour(string selectedId = null)
         {
-            ViewBag.MATOUR = new SelectList(dalTour.GetAll(), "MaTour", "TenGoi", selectedId);
+            ViewBag.MATOUR = new SelectList(dalTour.GetAll(), "MaTour", "MaTour", selectedId);
             ViewBag.MADIADIEM = new SelectList(dalDD.GetAll(), "MaDiaDiem", "TenDiaDiem", selectedId);
         }
+       
         [HttpGet]
-        public ActionResult AddCTTour(CTTOUR ctTour)
+        public ActionResult AddCTTour()
         {
-            
+            DropDownListCTtour();           
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddCTTour(CHITIETTOUR ctTour)
+        {
+            if (ModelState.IsValid)
+            {
+                if ((dalCTTour.Insert(ctTour) == true))
+                {
+                    return RedirectToAction("Index");
+                }
+            }
             DropDownListCTtour();
-            var model = db.CHITIETTOURs.Where(a => a.MATOUR.Equals(ctTour.BANGGIA.MATOUR));
+            return View();
+        }
+        public ActionResult EditCTTour(string maTour = "", string maDD = "")
+        {
+            var ctTour = dalCTTour.GetCTTById(maTour, maDD);
+            return View(ctTour); 
+        }
+        [HttpPost]
+        public ActionResult EditCTTour(CHITIETTOUR ctTour)
+        {
+            if (dalCTTour.Update(ctTour) == true)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public ActionResult DeleteCTTour(string maTour = "", string maDD = "")
+        {
+            var ctTour = dalCTTour.GetCTTById(maTour, maDD);
             return View(ctTour);
+        }
+        [HttpPost]
+        public ActionResult DeleteCTTour(CHITIETTOUR ctTour)
+        {
+            if (dalCTTour.Delete(ctTour) == true)
+            {
+                return RedirectToAction("DiaDiem");
+            }
+            return View();
         }
         public ActionResult DiaDiem()
         {
@@ -228,6 +268,71 @@ namespace Nhom05_QLDL.Controllers
             if (dalLH.Delete(lh) == true)
             {
                 return RedirectToAction("LoaiHinh");
+            }
+            return View();
+        }
+        public string nextMaGiaTour()
+        {
+            return tool.next_maGiaTour(dalTour.GetPkey());
+        }
+        public void DropDownListGia(string selectedId = null)
+        {
+            ViewBag.MATOUR = new SelectList(dalTour.GetAll(), "MaTour", "TenTour", selectedId);
+        }
+        [HttpGet]
+        public ActionResult AddGiaTour()
+        {
+            string newMaGia = nextMaLH();
+            GIATOUR gia = new GIATOUR
+            {
+                MAGIA = newMaGia,
+                MATOUR = "",
+                THANHTIEN = null,
+                TG_BATDAU = null,
+                TG_KETTHUC = null
+            };
+            DropDownListGia();
+            return View(gia);
+        }
+        [HttpPost]
+        public ActionResult AddGiaTour(GIATOUR gia)
+        {
+            if (ModelState.IsValid)
+            {
+                if (dalGia.Insert(gia) == true)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            DropDownListGia();
+            return View();
+        }
+
+        public ActionResult EditGiaTour(string maGia = "")
+        {
+            var gia = dalGia.GetGiaById(maGia);
+            return View(gia);
+        }
+        [HttpPost]
+        public ActionResult EditGiaTour(GIATOUR gia)
+        {
+            if (dalGia.Update(gia) == true)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public ActionResult DeleteGiaTour(string maGia = "")
+        {
+            var gia = dalGia.GetGiaById(maGia);
+            return View(gia);
+        }
+        [HttpPost]
+        public ActionResult DeleteGiaTour(GIATOUR gia)
+        {
+            if (dalGia.Delete(gia) == true)
+            {
+                return RedirectToAction("Index");
             }
             return View();
         }

@@ -15,7 +15,7 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.DOANDULICHes.ToList();
         }
-        public DOANDULICH GetNVById(string maDoan)
+        public DOANDULICH GetDoanById(string maDoan)
         {
             QLDLEntity db = new QLDLEntity();
             return db.DOANDULICHes.Find(maDoan);

@@ -222,6 +222,20 @@
     <Content Include="Views\TouristGroup\DeleteLoaiCP.cshtml" />
     <Content Include="Views\TouristGroup\DeleteTouristGroup.cshtml" />
     <Content Include="Views\Home\AddCTTour.cshtml" />
+    <Content Include="Views\Home\AddGiaTour.cshtml" />
+    <Content Include="Views\Home\EditGiaTour.cshtml" />
+    <Content Include="Views\Home\DeleteGiaTour.cshtml" />
+    <Content Include="Views\TouristGroup\DeleteChiPhi.cshtml" />
+    <Content Include="Views\TouristGroup\DeleteNoiDung.cshtml" />
+    <Content Include="Views\TouristGroup\AddNoiDung.cshtml" />
+    <Content Include="Views\TouristGroup\AddChiPhi.cshtml" />
+    <Content Include="Views\TouristGroup\EditChiPhi.cshtml" />
+    <Content Include="Views\TouristGroup\EditNoiDung.cshtml" />
+    <Content Include="Views\TouristGroup\AddCTTouristGroup.cshtml" />
+    <Content Include="Views\TouristGroup\EditCTTouristGroup.cshtml" />
+    <Content Include="Views\TouristGroup\DeleteCTTouristGroup.cshtml" />
+    <Content Include="Views\Home\DeleteCTTour.cshtml" />
+    <Content Include="Views\Home\EditCTTour.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

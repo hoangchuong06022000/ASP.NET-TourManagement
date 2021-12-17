@@ -92,50 +92,83 @@
                         <h4 class="card-title"> Quản Lý Đoàn</h4>
                     </div>
                     <div class="row-sm-4">
-                        <a href="" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                        <a href="@Url.Action("AddTouristGroup", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Đoàn</th>
-                                    <th>Tên Tour</th>
-                                    <th>Khởi Hành</th>
-                                    <th>Kết Thúc</th>
-                                    <th>Doanh Thu</th>
-                                    <th>Hành Trình</th>
-                                    <th>Khách Sạn</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Đoàn</th>
+                                <th>Tên Tour</th>
+                                <th>Khởi Hành</th>
+                                <th>Kết Thúc</th>
+                                <th>Doanh Thu</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach (Model.Model.DOANDULICH doan in Model.DOANDULICH)
                                     {
-                                        foreach (Model.Model.NOIDUNG noiDung in Model.NOIDUNG)
-                                        {
-                                            if (doan.MADOAN.Equals(noiDung.MADOAN))
-                                            {
-                                                <tr>
-                                                    <td>@doan.MADOAN</td>
-                                                    <td>@doan.TENTOUR</td>
-                                                    <td>@doan.NGAYKHOIHANH</td>
-                                                    <td>@doan.NGAYKETTHUC</td>
-                                                    <td>@doan.DOANHTHU</td>
-                                                    <td>@noiDung.HANHTRINH</td>
-                                                    <td>@noiDung.KHACHSAN</td>
-                                                    <td class="text-center">
-                                                        <a href="" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @Html.ActionLink("Details", "TouristGroup", new { maDoan = doan.MADOAN })
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }
+                                        <tr>
+                                            <td>@doan.MADOAN</td>
+                                            <td>@doan.TENTOUR</td>
+                                            <td>@doan.NGAYKHOIHANH</td>
+                                            <td>@doan.NGAYKETTHUC</td>
+                                            <td>@doan.DOANHTHU</td>
+
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditTouristGroup", "TouristGroup", new { maDoan = @doan.MADOAN })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                @Html.ActionLink("Details", "TouristGroup", new { maDoan = doan.MADOAN })
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteTouristGroup", "TouristGroup", new { maDoan = @doan.MADOAN })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <h4 class="card-title"> Nội Dung</h4>
+                    </div>
+                    <div class="row-sm-4">
+                        <a href="@Url.Action("AddNoiDung", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Mã Đoàn</th>
+                                <th>Hành Trình</th>
+                                <th>Khách Sạn</th>
+                                <th></th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.NOIDUNG noiDung in Model.NOIDUNG)
+                                    {
+                                        <tr>
+                                            <td>@noiDung.MADOAN</td>
+                                            <td>@noiDung.HANHTRINH</td>
+                                            <td>@noiDung.KHACHSAN</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditNoiDung", "TouristGroup", new { maDoan = noiDung.MADOAN })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteNoiDung", "TouristGroup", new { maDoan = noiDung.MADOAN })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+
                                     }
                                 </tbody>
                             </table>
@@ -149,43 +182,73 @@
                         <h4 class="card-title">Chi Tiết Đoàn</h4>
                     </div>
                     <div class="col-sm-4">
-                        <a href="" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
-                        <a href="@Url.Action("LoaiChiPhi", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-usd"></i> Loại Chi Phí</button></a>
+                        <a href="@Url.Action("AddCTTouristGroup", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Đoàn</th>
-                                    <th>Tên Khách Hàng</th>
-                                    <th>Vai Trò KH</th>
-                                    <th>Tên Chi Phí</th>
-                                    <th>Số Tiền</th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Đoàn</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Vai Trò KH</th>
+                                <th></th>
+                                <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach (Model.Model.CHITIETDOAN ctDoan in Model.CHITIETDOAN)
                                     {
-                                        foreach (Model.Model.CHIPHI chiPhi in Model.CHIPHI)
-                                        {
-                                            if (ctDoan.MADOAN.Equals(chiPhi.MADOAN))
-                                            {
-                                                <tr>
-                                                    <td>@ctDoan.MADOAN</td>
-                                                    <td>@ctDoan.TENKH</td>
-                                                    <td>@ctDoan.VAITROKH</td>
-                                                    <td>@chiPhi.TENLOAICHIPHI</td>
-                                                    <td>@chiPhi.SOTIEN</td>
-                                                    <td class="text-center">
-                                                        <a href="" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <a href="" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }
+                                        <tr>
+                                            <td>@ctDoan.MADOAN</td>
+                                            <td>@ctDoan.TENKH</td>
+                                            <td>@ctDoan.VAITROKH</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditCTTouristGroup", "TouristGroup", new { maDoan = @ctDoan.MADOAN, maKH = ctDoan.MAKH })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteCTTouristGroup", "TouristGroup", new { maDoan = @ctDoan.MADOAN, maKH = ctDoan.MAKH })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header">
+                        <h4 class="card-title">Chi Phí</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="@Url.Action("AddChiPhi", "TouristGroup")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Mã Đoàn</th>
+                                <th>Chi Phí</th>
+                                <th>Số Tiền</th>
+                                <th></th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.Model.CHIPHI chiPhi in Model.CHIPHI)
+                                    {
+                                        <tr>
+                                            <td>@chiPhi.MADOAN</td>
+                                            <td>@chiPhi.TENLOAICHIPHI</td>
+                                            <td>@chiPhi.SOTIEN</td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("EditChiPhi", "TouristGroup", new { maCP = @chiPhi.MACHIPHI, maDoan = @chiPhi.MADOAN })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="@Url.Action("DeleteChiPhi", "TouristGroup", new { maCP = @chiPhi.MACHIPHI, maDoan = @chiPhi.MADOAN })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
+                                            </td>
+                                        </tr>
+
                                     }
                                 </tbody>
                             </table>
@@ -194,5 +257,5 @@
                 </div>
             </div>
         </div>
-    </div>
+            </div>
 </div>

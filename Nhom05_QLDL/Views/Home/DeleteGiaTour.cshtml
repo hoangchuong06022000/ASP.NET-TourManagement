@@ -1,0 +1,56 @@
+﻿@model Model.Model.GIATOUR
+
+@{
+    ViewBag.Title = "DeleteGiaTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MAGIA)
+
+
+    <div class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xoá Giá Tour này không?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã Giá: </label>
+                        @Html.DisplayFor(model => model.MAGIA)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tour: </label>
+                        @Html.DisplayFor(model => model.TENTOUR)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Thành Tiền: </label>
+                        @Html.DisplayFor(model => model.THANHTIEN)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bắt Đầu: </label>
+                        @Html.DisplayFor(model => model.TG_BATDAU)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kết Thúc: </label>
+                        @Html.DisplayFor(model => model.TG_KETTHUC)
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <a href="@Url.Action("Index", "Home")" class="add"><button type="button" class="btn">Huỷ</button></a>
+                            <input type="submit" value="Xoá" class="btn btn-default" style="background-color: #51bcda;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
