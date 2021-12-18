@@ -1,9 +1,10 @@
-﻿using Model.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model.Model;
+using Model.DAL;
 
 namespace Model.DAL
 {
@@ -27,7 +28,7 @@ namespace Model.DAL
 
         public int SoKhachTheoDoan(string maDoan)
         {
-            CHITIETDOAN ctDoan = (CHITIETDOAN) db.CHITIETDOANs.Where(a => a.MADOAN == maDoan);
+            CHITIETDOAN ctDoan = (CHITIETDOAN)db.CHITIETDOANs.Where(a => a.MADOAN == maDoan);
             return db.KHACHes.Where(a => a.MAKH == ctDoan.MAKH).Count();
         }
 
