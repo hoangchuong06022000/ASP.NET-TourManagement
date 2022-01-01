@@ -16,6 +16,22 @@ namespace Model.DAL
             var result = from c in db.CHITIETTOURs where c.MATOUR == MaTour select c; 
             return result.ToList();
         }
+        public List<CHITIETTOUR> GetCTTourBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            List<CHITIETTOUR> listCTTour = new List<CHITIETTOUR>();
+            List<TOURDULICH> list = db.TOURDULICHes.Where(x => x.MATOUR.Contains(str) || x.TENGOI.Contains(str) || x.DACDIEM.Contains(str)).ToList();
+            foreach (TOURDULICH tour in list)
+            {
+                List<CHITIETTOUR> listCT = new List<CHITIETTOUR>();
+                listCT = db.CHITIETTOURs.Where(c => c.MATOUR.Equals(tour.MATOUR)).ToList();
+                foreach (CHITIETTOUR ctTour in listCT)
+                {
+                    listCTTour.Add(ctTour);
+                }
+            }
+            return listCTTour;
+        }
         public CHITIETTOUR GetCTTById(string maTour, string maDD)
         {
             QLDLEntity db = new QLDLEntity();

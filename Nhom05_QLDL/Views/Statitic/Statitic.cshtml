@@ -1,6 +1,4 @@
-﻿@model Model.Model.THONGKE
-
-@{
+﻿@{
     ViewBag.Title = "Statitic";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -71,18 +69,6 @@
                 <span class="navbar-toggler-bar navbar-kebab"></span>
                 <span class="navbar-toggler-bar navbar-kebab"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <form>
-                    <div class="input-group no-border">
-                        <input type="text" value="" class="form-control" placeholder="Tìm kiếm...">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <i class="nc-icon nc-zoom-split"></i>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -94,7 +80,16 @@
                         <h4 class="card-title"> Thống kê</h4>
                     </div>
                     <div class="card-body">
-                        <label>Số Tour Du Lịch:  </label>
+                        @using (Html.BeginForm("ViewStatitic", "Statitic", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+                        {
+                        <div>
+                            <label style="font-size: 18px; color:black;">Từ:  </label>
+                            <input type="date" value="2010-01-01" name="ngayTu" style="width=100px;"/>
+                            <label style="font-size: 18px; color:black;">Đến:  </label>
+                            <input type="date" value="2020-01-01" name="ngayDen" style="width=100px;"/>
+                            <input class="btn btn-info-add-new" type="submit" value="Thống Kê" style="font-size: 15px; color: white; background-color: #51bcda; " />
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

@@ -15,6 +15,11 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.NHANVIENs.ToList();
         }
+        public List<NHANVIEN> GetNVBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            return db.NHANVIENs.Where(x => x.MANV.Contains(str) || x.TENNV.Contains(str)).ToList();
+        }
         public NHANVIEN GetNVById(string maNV)
         {
             QLDLEntity db = new QLDLEntity();

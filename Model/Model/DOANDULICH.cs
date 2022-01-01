@@ -30,12 +30,24 @@ namespace Model.Model
         }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddThh:mm:ss}")]
         public DateTime? NGAYKHOIHANH { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddThh:mm:ss}")]
         public DateTime? NGAYKETTHUC { get; set; }
 
         public double DOANHTHU { get; set; }
+
+        public string TONGTIEN
+        {
+            get { return DinhDanhTien((double)DOANHTHU); }
+        }
+
+        public string DinhDanhTien(double Tien)
+        {
+            return string.Format("{0:#,##0}", Tien);
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHIPHI> CHIPHIs { get; set; }

@@ -225,7 +225,6 @@ C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.cspro
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.CoreCompileInputs.cache
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.dll
 C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.pdb
-C:\Users\Netpham1970\source\repos\Nhom05\Nhom05_QLDL\obj\Debug\Nhom05_QLDL.csproj.CopyComplete
 C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Nhom05_QLDL\bin\Nhom05_QLDL.dll.config
 C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Nhom05_QLDL\bin\Nhom05_QLDL.dll
 C:\Users\DELL\source\repos\Web Tour\ASP.NET-TourManagement\Nhom05_QLDL\bin\Nhom05_QLDL.pdb

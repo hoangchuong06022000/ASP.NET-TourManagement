@@ -16,6 +16,11 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.KHACHes.ToList();
         }
+        public List<KHACH> GetKHBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            return db.KHACHes.Where(x => x.MAKH.Contains(str) || x.HOTEN.Contains(str) || x.CMND.Contains(str) || x.DIACHI.Contains(str) || x.SDT.Contains(str) || x.GIOITINH.Contains(str) || x.QUOCTICH.Contains(str)).ToList();
+        }
         public KHACH GetKHById(string maKH)
         {
             QLDLEntity db = new QLDLEntity();

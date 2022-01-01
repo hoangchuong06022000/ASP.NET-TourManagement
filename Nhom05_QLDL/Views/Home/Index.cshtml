@@ -70,21 +70,18 @@
                 <span class="navbar-toggler-bar navbar-kebab"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <form>
-                    <div class="input-group no-border">
-                        <input type="text" value="" class="form-control" placeholder="Tìm kiếm...">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <i class="nc-icon nc-zoom-split"></i>
-                            </div>
-                        </div>
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
+                {
+                    <div class="form-group form-inline">
+                        <input class="form-control" type="text" name="strSearch" placeholder="Tìm kiếm Tour" value="@ViewBag.StrSearch" />
+                        <button type="submit" class="btn btn-default"><i class="nc-icon nc-zoom-split"></i></button>
                     </div>
-                </form>
+                }
             </div>
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="content">
+    <div class="content" style="margin-top:110px">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -164,7 +161,7 @@
                                                 <a href="@Url.Action("DeleteCTTour", "Home", new { maTour = ctTour.MATOUR, maDD = ctTour.MADIADIEM }) " class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
                                             </td>
                                         </tr>
-                                     }
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -197,7 +194,7 @@
                                         <tr>
                                             <td>@gia.MAGIA</td>
                                             <td>@gia.TENTOUR</td>
-                                            <td>@gia.THANHTIEN</td>
+                                            <td>@gia.GIATIEN</td>
                                             <td>@gia.TG_BATDAU</td>
                                             <td>@gia.TG_KETTHUC</td>
                                             <td class="text-center">
@@ -207,7 +204,7 @@
                                                 <a href="@Url.Action("DeleteGiaTour", "Home", new { maGia = gia.MAGIA })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
                                             </td>
                                         </tr>
-                                    }                                   
+                                    }
                                 </tbody>
                             </table>
                         </div>

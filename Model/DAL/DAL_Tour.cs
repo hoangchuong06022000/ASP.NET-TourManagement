@@ -16,6 +16,11 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.TOURDULICHes.ToList();
         }
+        public List<TOURDULICH> GetTourBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            return db.TOURDULICHes.Where(x => x.MATOUR.Contains(str) || x.TENGOI.Contains(str) || x.DACDIEM.Contains(str)).ToList();
+        }
         public TOURDULICH GetTourById(string maTour)
         {
             QLDLEntity db = new QLDLEntity();           

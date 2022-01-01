@@ -20,10 +20,22 @@ namespace Model.Model
 
         public double? THANHTIEN { get; set; }
 
+        public string GIATIEN
+        {
+            get { return DinhDanhTien((double)THANHTIEN); }
+        }
+
+        public string DinhDanhTien(double Tien)
+        {
+            return string.Format("{0:#,##0}", Tien);
+        }
+
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddThh:mm:ss}")]
         public DateTime ? TG_BATDAU { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-ddThh:mm:ss}")]
         public DateTime ? TG_KETTHUC { get; set; }
 
         public virtual TOURDULICH TOURDULICH { get; set; }

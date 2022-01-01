@@ -15,6 +15,28 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.GIATOURs.ToList();
         }
+        public List<GIATOUR> GetGiaTourBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            List<GIATOUR> listGia = new List<GIATOUR>();
+            List<TOURDULICH> list = db.TOURDULICHes.Where(x => x.MATOUR.Contains(str) || x.TENGOI.Contains(str) || x.DACDIEM.Contains(str)).ToList();
+            foreach (TOURDULICH tour in list)
+            {
+                List<GIATOUR> listG = new List<GIATOUR>();
+                listG = db.GIATOURs.Where(c => c.MATOUR.Equals(tour.MATOUR)).ToList();
+                foreach (GIATOUR gia in listG)
+                {
+                    listGia.Add(gia);
+                }
+            }
+            return listGia;
+        }
+
+        public List<GIATOUR> GetGiaByMaTour(string maTour)
+        {
+            QLDLEntity db = new QLDLEntity();
+            return db.GIATOURs.Where(x => x.MATOUR == maTour).ToList();
+        }
         public GIATOUR GetGiaById(string maGia)
         {
             QLDLEntity db = new QLDLEntity();
@@ -39,7 +61,7 @@ namespace Model.DAL
                 QLDLEntity db = new QLDLEntity();
                 db.GIATOURs.Add(GiaTour);
                 db.SaveChanges();
-                return true;
+                return true;  
             }
             catch (Exception e)
             {

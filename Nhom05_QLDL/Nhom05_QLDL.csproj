@@ -226,16 +226,23 @@
     <Content Include="Views\Home\EditGiaTour.cshtml" />
     <Content Include="Views\Home\DeleteGiaTour.cshtml" />
     <Content Include="Views\TouristGroup\DeleteChiPhi.cshtml" />
-    <Content Include="Views\TouristGroup\DeleteNoiDung.cshtml" />
-    <Content Include="Views\TouristGroup\AddNoiDung.cshtml" />
     <Content Include="Views\TouristGroup\AddChiPhi.cshtml" />
     <Content Include="Views\TouristGroup\EditChiPhi.cshtml" />
-    <Content Include="Views\TouristGroup\EditNoiDung.cshtml" />
     <Content Include="Views\TouristGroup\AddCTTouristGroup.cshtml" />
     <Content Include="Views\TouristGroup\EditCTTouristGroup.cshtml" />
     <Content Include="Views\TouristGroup\DeleteCTTouristGroup.cshtml" />
     <Content Include="Views\Home\DeleteCTTour.cshtml" />
     <Content Include="Views\Home\EditCTTour.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\SearchNull.cshtml" />
+    <Content Include="Views\Employee\Search.cshtml" />
+    <Content Include="Views\Employee\SearchNull.cshtml" />
+    <Content Include="Views\Tourist\Search.cshtml" />
+    <Content Include="Views\Tourist\SearchNull.cshtml" />
+    <Content Include="Views\TouristGroup\SearchNull.cshtml" />
+    <Content Include="Views\TouristGroup\Search.cshtml" />
+    <Content Include="Views\Statitic\ViewStatitic.cshtml" />
+    <Content Include="Views\TouristGroup\ViewSelectMaDoan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

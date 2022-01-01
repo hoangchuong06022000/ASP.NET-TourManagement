@@ -15,6 +15,28 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.CHIPHIs.ToList();
         }
+        public List<CHIPHI> GetCPBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            List<CHIPHI> listChiPhi = new List<CHIPHI>();
+            List<TOURDULICH> list = db.TOURDULICHes.Where(x => x.MATOUR.Contains(str) || x.TENGOI.Contains(str) || x.DACDIEM.Contains(str)).ToList();
+            foreach (TOURDULICH tour in list)
+            {
+                List<DOANDULICH> listDoan = new List<DOANDULICH>();
+                listDoan = db.DOANDULICHes.Where(c => c.MATOUR.Equals(tour.MATOUR)).ToList();
+                foreach (DOANDULICH doan in listDoan)
+                {
+                    List<CHIPHI> listCP = new List<CHIPHI>();
+                    listCP = db.CHIPHIs.Where(c => c.MADOAN.Equals(doan.MADOAN)).ToList();
+                    foreach (CHIPHI cp in listCP)
+                    {
+                        listChiPhi.Add(cp);
+                    }
+                }
+            }
+            return listChiPhi;
+        }
+       
         public CHIPHI GetCPById(string maCP, string maDoan)
         {
             QLDLEntity db = new QLDLEntity();

@@ -20,6 +20,13 @@
                 <h4 class="modal-title">Chỉnh Sửa</h4>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <label>Giá Tour</label>
+                    <div>
+                        @Html.DropDownList("GIATOUR", null, new { @name = "giaTour", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MADOAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label>Vai Trò Khách Hàng</label>

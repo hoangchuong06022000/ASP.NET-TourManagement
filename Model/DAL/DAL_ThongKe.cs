@@ -10,44 +10,41 @@ namespace Model.DAL
 {
     public class DAL_ThongKe
     {
-        private QLDLEntity db = new QLDLEntity();
-        public int SoTour()
+       
+        public List<ModelThongKeNhanVien> ThongKeNhanVien()
         {
-            return db.TOURDULICHes.Count();
+            using (var ctx = new QLDLEntity())
+            {
+                var query = ctx.Database
+                    .SqlQuery<ModelThongKeNhanVien>("SELECT PB.MANV, TENNV, COUNT(MADOAN) AS 'SOLAN' FROM NHANVIEN NV, PHANBONHANVIEN PB WHERE PB.MANV = NV.MANV GROUP BY PB.MANV, TENNV").ToList();
+
+                return query;
+            }
         }
 
-        public int SoDoan()
+        public List<ModelThongKeNhanVien> ThongKeNhanVientuDen(DateTime NgayTu, DateTime NgayDen)
         {
-            return db.DOANDULICHes.Count();
+            using (var ctx = new QLDLEntity())
+            {
+                var query = ctx.Database
+                    .SqlQuery<ModelThongKeNhanVien>("SELECT PB.MANV, TENNV, COUNT(PB.MADOAN) AS 'SOLAN' FROM NHANVIEN NV, PHANBONHANVIEN PB, DOANDULICH DOAN " +
+                    " WHERE PB.MANV = NV.MANV AND DOAN.MADOAN = PB.MADOAN AND NGAYKHOIHANH >= '" + NgayTu.Year + "-" + NgayTu.Month + "-" + NgayTu.Day +
+                    "' AND NGAYKETTHUC <= '" + NgayDen.Year + "-" + NgayDen.Month + "-" + NgayDen.Day +
+                    "' GROUP BY PB.MANV, TENNV").ToList();
+
+                return query;
+            }
         }
 
-        public int SoKhachHang()
+        public List<ModelThongKeTour> ThongKeTour()
         {
-            return db.KHACHes.Count();
-        }
+            using (var ctx = new QLDLEntity())
+            {
+                var query = ctx.Database
+                    .SqlQuery<ModelThongKeTour>("SELECT MATOUR, SUM(DOANHTHU) 'TONGTHU', COUNT(DOAN.MADOAN) AS 'SODOAN' FROM DOANDULICH DOAN GROUP BY MATOUR").ToList();
 
-        public int SoKhachTheoDoan(string maDoan)
-        {
-            CHITIETDOAN ctDoan = (CHITIETDOAN)db.CHITIETDOANs.Where(a => a.MADOAN == maDoan);
-            return db.KHACHes.Where(a => a.MAKH == ctDoan.MAKH).Count();
-        }
-
-        public int SoLanDiTourNV(string maNV)
-        {
-            NHANVIEN nv = (NHANVIEN)db.NHANVIENs.Where(a => a.MANV == maNV);
-            return db.PHANBONHANVIENs.Where(a => a.MANV == nv.MANV).Count();
-        }
-
-        public double DoanhThuMoiDoan(string maDoan)
-        {
-            DOANDULICH doan = (DOANDULICH)db.DOANDULICHes.Where(a => a.MADOAN == maDoan);
-            return doan.DOANHTHU;
-        }
-
-        public double ChiPhiMoiDoan(string maDoan)
-        {
-            CHIPHI chiPhi = (CHIPHI)db.CHIPHIs.Where(a => a.MADOAN == maDoan);
-            return chiPhi.SOTIEN.GetValueOrDefault();
+                return query;
+            }
         }
     }
 }

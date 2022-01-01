@@ -15,6 +15,17 @@ namespace Nhom05_QLDL.Controllers
         private QLDLEntity db = new QLDLEntity();
         private DAL_KhachHang dalKhach = new DAL_KhachHang();
         // GET: Tourist
+        public ActionResult Search(string strSearch)
+        {
+            dynamic myModel = new ExpandoObject();
+            if (!String.IsNullOrEmpty(strSearch))
+            {
+                myModel.KHACH = dalKhach.GetKHBySearch(strSearch);
+                return View(myModel);
+            }
+            ViewBag.StrSearch = strSearch;
+            return View("SearchNull");
+        }
         public ActionResult Tourist()
         {          
             dynamic myModel = new ExpandoObject();

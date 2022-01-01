@@ -15,6 +15,22 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.PHANBONHANVIENs.ToList();
         }
+        public List<PHANBONHANVIEN> GetPCBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            List<PHANBONHANVIEN> listPhanCong = new List<PHANBONHANVIEN>();
+            List<NHANVIEN> listNV = db.NHANVIENs.Where(x => x.MANV.Contains(str) || x.TENNV.Contains(str)).ToList();
+            foreach (NHANVIEN nv in listNV)
+            {
+                List<PHANBONHANVIEN> listPC = new List<PHANBONHANVIEN>();
+                listPC = db.PHANBONHANVIENs.Where(c => c.MANV.Equals(nv.MANV)).ToList();
+                foreach (PHANBONHANVIEN pc in listPC)
+                {
+                    listPhanCong.Add(pc);
+                }
+            }
+            return listPhanCong;
+        }
         public PHANBONHANVIEN GetPCById(string maNV, string maDoan)
         {
             QLDLEntity db = new QLDLEntity();

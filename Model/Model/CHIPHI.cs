@@ -25,6 +25,14 @@ namespace Model.Model
 
         public double? SOTIEN { get; set; }
 
+        public string GIATIEN
+        {
+            get { return DinhDanhTien((double)SOTIEN); }
+        }
+        public string DinhDanhTien(double Tien)
+        {
+            return string.Format("{0:#,##0}", Tien);
+        }
         public virtual LOAICHIPHI LOAICHIPHI { get; set; }
 
         public virtual DOANDULICH DOANDULICH { get; set; }

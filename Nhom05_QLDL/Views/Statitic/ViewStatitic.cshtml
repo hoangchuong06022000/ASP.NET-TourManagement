@@ -1,10 +1,8 @@
 ﻿@model dynamic
 @{
-    ViewBag.Title = "Tourist";
+    ViewBag.Title = "ViewStatitic";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
         <a href="https://localhost:44317/" class="simple-text logo-mini">
@@ -30,7 +28,7 @@
                     <p>Đoàn Du Lịch</p>
                 </a>
             </li>
-            <li class="active">
+            <li class="active-pro">
                 <a href="https://localhost:44317/Tourist/Tourist">
                     <i class='fa fa-street-view'></i>
                     <p>Khách Du Lịch</p>
@@ -42,7 +40,7 @@
                     <p>Nhân Viên</p>
                 </a>
             </li>
-            <li class="active-pro">
+            <li class="active">
                 <a href="https://localhost:44317/Statitic/Statitic">
                     <i class="fa fa-line-chart"></i>
                     <p>Thống kê</p>
@@ -63,22 +61,13 @@
                         <span class="navbar-toggler-bar bar3"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="javascript:;">KHÁCH DU LỊCH</a>
+                <a class="navbar-brand" href="javascript:;">THỐNG KÊ</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar navbar-kebab"></span>
                 <span class="navbar-toggler-bar navbar-kebab"></span>
                 <span class="navbar-toggler-bar navbar-kebab"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                @using (Html.BeginForm("Search", "Tourist", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
-                {
-                    <div class="form-group form-inline">
-                        <input class="form-control" type="text" name="strSearch" placeholder="Tìm kiếm Khách Hàng" value="@ViewBag.StrSearch" />
-                        <button type="submit" class="btn btn-default"><i class="nc-icon nc-zoom-split"></i></button>
-                    </div>
-                }
-            </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -87,42 +76,23 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Quản Lý Khách Hàng</h4>
-                    </div>
-                    <div class="col-sm-4">
-                        <a href="@Url.Action("AddTourist", "Tourist")" class="add"><button type="button" class="btn btn-info-add-new" style="background-color: #51bcda;"><i class="fa fa-plus"></i> Thêm mới</button></a>
+                        <h4 class="card-title">Thống Kê Tour</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Khách Hàng</th>
-                                    <th>Họ Tên</th>
-                                    <th>CMND</th>
-                                    <th>Địa Chỉ</th>
-                                    <th>Giới Tính</th>
-                                    <th>SĐT</th>
-                                    <th>Quốc Tịch</th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Tour</th>
+                                <th>Doanh Thu</th>
+                                <th>Số Đoàn</th>
                                 </thead>
                                 <tbody>
-                                    @foreach (Model.Model.KHACH khach in Model.KHACH)
+                                    @foreach (Model.DAL.ModelThongKeTour tour in Model.TOUR)
                                     {
                                         <tr>
-                                            <td>@khach.MAKH</td>
-                                            <td>@khach.HOTEN</td>
-                                            <td>@khach.CMND</td>
-                                            <td>@khach.DIACHI</td>
-                                            <td>@khach.GIOITINH</td>
-                                            <td>@khach.SDT</td>
-                                            <td>@khach.QUOCTICH</td>
-                                            <td class="text-center">
-                                                <a href="@Url.Action("EditTourist", "Tourist", new { maKH = khach.MAKH })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
-                                            </td>                              
-                                            <td class="text-center">
-                                                <a href="@Url.Action("DeleteTourist", "Tourist", new { maKH = khach.MAKH })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
-                                            </td>
+                                            <td>@tour.MATOUR</td>
+                                            <td>@tour.GIATIEN</td>
+                                            <td>@tour.SODOAN</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -130,7 +100,35 @@
                         </div>
                     </div>
                 </div>
-            </div>                                       
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Thống Kê Nhân Viên</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>Mã Nhân Viên</th>
+                                <th>Tên Nhân Viên</th>
+                                <th>Số Lần Đi Tour</th>
+                                </thead>
+                                <tbody>
+                                    @foreach (Model.DAL.ModelThongKeNhanVien nv in Model.NHANVIEN)
+                                    {
+                                        <tr>
+                                            <td>@nv.MANV</td>
+                                            <td>@nv.TENNV</td>
+                                            <td>@nv.SOLAN</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

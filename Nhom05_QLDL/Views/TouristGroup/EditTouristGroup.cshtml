@@ -12,6 +12,7 @@
 <div class="form-horizontal">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MADOAN)
+    @Html.HiddenFor(model => model.DOANHTHU)
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -22,28 +23,35 @@
                 <div class="form-group">
                     <label>Tour</label>
                     <div>
-                        @Html.DropDownListFor(model => model.MATOUR, null, htmlAttributes: new { @class = "form-control" } )
+                        @Html.DropDownListFor(model => model.MATOUR, null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MATOUR, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Ngày Khởi Hành</label>
-                    @Html.EditorFor(model => model.NGAYKHOIHANH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.NGAYKHOIHANH, "{0:yyyy-MM-ddThh:mm:ss}", htmlAttributes: new { @class = "form-control", type = "datetime-local" })
                     @Html.ValidationMessageFor(model => model.NGAYKHOIHANH, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label>Ngày Kết Thúc</label>
-                    @Html.EditorFor(model => model.NGAYKETTHUC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.NGAYKETTHUC, "{0:yyyy-MM-ddThh:mm:ss}", htmlAttributes: new { @class = "form-control", type = "datetime-local" })
                     @Html.ValidationMessageFor(model => model.NGAYKETTHUC, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
-                    <label>Doanh Thu</label>
-                    @Html.EditorFor(model => model.DOANHTHU, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DOANHTHU, "", new { @class = "text-danger" })
+                    <label>Hành Trình</label>
+                    @Html.EditorFor(model => model.NOIDUNG.HANHTRINH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NOIDUNG.HANHTRINH, "", new { @class = "text-danger" })
                 </div>
+
+                <div class="form-group">
+                    <label>Khách Sạn</label>
+                    @Html.EditorFor(model => model.NOIDUNG.KHACHSAN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NOIDUNG.KHACHSAN, "", new { @class = "text-danger" })
+                </div>
+
                 <div class="modal-footer">
                     <div class="form-group">
                         <a href="@Url.Action("TouristGroup", "TouristGroup")" class="add"><button type="button" class="btn">Huỷ</button></a>

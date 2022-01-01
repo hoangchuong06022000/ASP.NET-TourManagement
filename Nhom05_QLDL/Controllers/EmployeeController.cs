@@ -20,6 +20,18 @@ namespace Nhom05_QLDL.Controllers
         private DAL_NhanVien dalNV = new DAL_NhanVien();
         private DAL_PhanBoNhanVien dalPBNV = new DAL_PhanBoNhanVien();
         // GET: Employee
+        public ActionResult Search(string strSearch)
+        {
+            dynamic myModel = new ExpandoObject();
+            if (!String.IsNullOrEmpty(strSearch))
+            {
+                myModel.NHANVIEN = dalNV.GetNVBySearch(strSearch);
+                myModel.PHANBONHANVIEN = dalPBNV.GetPCBySearch(strSearch);
+                return View(myModel);
+            }
+            ViewBag.StrSearch = strSearch;
+            return View("SearchNull");
+        }
         public ActionResult Employee()
         {
             dynamic myModel = new ExpandoObject();

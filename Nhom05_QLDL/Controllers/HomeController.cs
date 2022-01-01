@@ -20,6 +20,19 @@ namespace Nhom05_QLDL.Controllers
         private QLDLEntity db = new QLDLEntity();
         private Tool tool = new Tool();
         // GET: Home
+        public ActionResult Search(string strSearch)
+        {
+            dynamic myModel = new ExpandoObject();
+            if (!String.IsNullOrEmpty(strSearch))
+            {
+                myModel.TOURDULICH = dalTour.GetTourBySearch(strSearch);
+                myModel.CHITIETTOUR = dalCTTour.GetCTTourBySearch(strSearch);
+                myModel.GIATOUR = dalGia.GetGiaTourBySearch(strSearch);
+                return View(myModel);
+            }
+            ViewBag.StrSearch = strSearch;
+            return View("SearchNull");
+        }
         public ActionResult Index(string maTour = "")
         {           
             dynamic myModel = new ExpandoObject();

@@ -20,12 +20,24 @@ namespace Nhom05_QLDL.Controllers
         private DAL_ChiPhi dalCP = new DAL_ChiPhi();
         private DAL_LoaiChiPhi dalLoaiCP = new DAL_LoaiChiPhi();
         // GET: TouristGroup
+        public ActionResult Search(string strSearch)
+        {
+            dynamic myModel = new ExpandoObject();
+            if (!String.IsNullOrEmpty(strSearch))
+            {
+                myModel.DOANDULICH = dalDoan.GetDoanBySearch(strSearch);
+                myModel.CHITIETDOAN = dalCTToan.GetCTDoanBySearch(strSearch);
+                myModel.CHIPHI = dalCP.GetCPBySearch(strSearch);
+                return View(myModel);
+            }
+            ViewBag.StrSearch = strSearch;
+            return View("SearchNull");
+        }
         public ActionResult TouristGroup(string maDoan = "")
         {
             
             dynamic myModel = new ExpandoObject();
             myModel.DOANDULICH = dalDoan.GetAll();
-            myModel.NOIDUNG = dalND.GetAll();
             myModel.CHITIETDOAN = dalCTToan.GetAll(maDoan);
             myModel.CHIPHI = dalCP.GetAll();
             return View(myModel);
@@ -98,43 +110,57 @@ namespace Nhom05_QLDL.Controllers
             }
             return View();
         }
-        public void DropDownListCTDoan(string selectedId = null)
+        public void DropDownListCTDoan(string maDoan, string selectedId = null)
         {
             ViewBag.MADOAN = new SelectList(dalDoan.GetAll(), "MaDoan", "MaDoan", selectedId);
             ViewBag.MAKH = new SelectList(dalKH.GetAll(), "MAKH", "HoTen", selectedId);
+            QLDLEntity db = new QLDLEntity();
+            DAL_GiaTour dalGia = new DAL_GiaTour();
+            DOANDULICH doan = db.DOANDULICHes.Find(maDoan);
+            ViewBag.GIATOUR = new SelectList(dalGia.GetGiaByMaTour(doan.MATOUR), "MaGia", "GiaTien", selectedId);
         }
         [HttpGet]
-        public ActionResult AddCTTouristGroup()
+        public ActionResult ViewSelectMaDoan(string selectedId = null)
         {
-            DropDownListCTDoan();
+            ViewBag.MADOAN = new SelectList(dalDoan.GetAll(), "MaDoan", "MaDoan", selectedId);
             return View();
         }
+        [HttpGet]
+        public ActionResult AddCTTouristGroup(string maDoan)
+        {
+            DropDownListCTDoan(maDoan);
+            QLDLEntity db = new QLDLEntity();
+            CHITIETDOAN doan = db.CHITIETDOANs.Find(maDoan);
+            return View(doan);
+        }
         [HttpPost]
-        public ActionResult AddCTTouristGroup(CHITIETDOAN ctDoan)
+        public ActionResult AddCTTouristGroup(CHITIETDOAN ctDoan, string giaTour)
         {
             if (ModelState.IsValid)
             {
-                if (dalCTToan.Insert(ctDoan) == true)
+                if (dalCTToan.Insert(ctDoan, giaTour) == true)
                 {
                     return RedirectToAction("TouristGroup");
                 }
             }
-            DropDownListCTDoan();
+            DropDownListCTDoan(ctDoan.MADOAN);
             return View();
         }
 
         public ActionResult EditCTTouristGroup(string maDoan = "", string maKH = "")
         {
             var ctDoan = dalCTToan.GetCTDById(maDoan, maKH);
+            DropDownListCTDoan(maDoan);
             return View(ctDoan);
         }
         [HttpPost]
-        public ActionResult EditCTTouristGroup(CHITIETDOAN ctDoan)
+        public ActionResult EditCTTouristGroup(CHITIETDOAN ctDoan, string giaTour)
         {
-            if (dalCTToan.Update(ctDoan) == true)
+            if (dalCTToan.Update(ctDoan, giaTour) == true)
             {
                 return RedirectToAction("TouristGroup");
             }
+            DropDownListCTDoan(ctDoan.MADOAN);
             return View();
         }
         public ActionResult DeleteCTTouristGroup(string maDoan = "", string maKH = "")
@@ -261,57 +287,6 @@ namespace Nhom05_QLDL.Controllers
         public ActionResult DeleteChiPhi(CHIPHI chiPhi)
         {
             if (dalCP.Delete(chiPhi) == true)
-            {
-                return RedirectToAction("TouristGroup");
-            }
-            return View();
-        }
-        public void DropDownListNoiDung(string selectedId = null)
-        {
-            ViewBag.MADOAN = new SelectList(dalDoan.GetAll(), "MaDoan", "MaDoan", selectedId);
-        }
-        public ActionResult AddNoiDung()
-        {
-            DropDownListNoiDung();
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddNoiDung(NOIDUNG nd)
-        {
-            if (ModelState.IsValid)
-            {
-                if (dalND.Insert(nd) == true)
-                {
-                    return RedirectToAction("TouristGroup");
-                }
-            }
-            DropDownListNoiDung();
-            return View();
-        }
-
-        public ActionResult EditNoiDung(string maDoan = "")
-        {
-            var nd = dalND.GetNDById(maDoan);
-            return View(nd);
-        }
-        [HttpPost]
-        public ActionResult EditNoiDung(NOIDUNG nd)
-        {
-            if (dalND.Update(nd) == true)
-            {
-                return RedirectToAction("TouristGroup");
-            }
-            return View();
-        }
-        public ActionResult DeleteNoiDung(string maDoan = "")
-        {
-            var nd = dalND.GetNDById(maDoan);
-            return View(nd);
-        }
-        [HttpPost]
-        public ActionResult DeleteNoiDung(NOIDUNG nd)
-        {
-            if (dalND.Delete(nd) == true)
             {
                 return RedirectToAction("TouristGroup");
             }

@@ -1,9 +1,9 @@
 ﻿@model dynamic
+
 @{
-    ViewBag.Title = "Tourist";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
@@ -74,7 +74,7 @@
                 @using (Html.BeginForm("Search", "Tourist", FormMethod.Post, new { @class = "navbar-form navbar-right" }))
                 {
                     <div class="form-group form-inline">
-                        <input class="form-control" type="text" name="strSearch" placeholder="Tìm kiếm Khách Hàng" value="@ViewBag.StrSearch" />
+                        <input class="form-control" type="text" name="strSearch" placeholder="Tìm kiếm Nhân Viên" value="@ViewBag.StrSearch" />
                         <button type="submit" class="btn btn-default"><i class="nc-icon nc-zoom-split"></i></button>
                     </div>
                 }
@@ -96,15 +96,15 @@
                         <div class="table-responsive" style="overflow-y: scroll; overflow-x: scroll; height:100%; width: 100%; display: block; overflow: auto">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Mã Khách Hàng</th>
-                                    <th>Họ Tên</th>
-                                    <th>CMND</th>
-                                    <th>Địa Chỉ</th>
-                                    <th>Giới Tính</th>
-                                    <th>SĐT</th>
-                                    <th>Quốc Tịch</th>
-                                    <th></th>
-                                    <th></th>
+                                <th>Mã Khách Hàng</th>
+                                <th>Họ Tên</th>
+                                <th>CMND</th>
+                                <th>Địa Chỉ</th>
+                                <th>Giới Tính</th>
+                                <th>SĐT</th>
+                                <th>Quốc Tịch</th>
+                                <th></th>
+                                <th></th>
                                 </thead>
                                 <tbody>
                                     @foreach (Model.Model.KHACH khach in Model.KHACH)
@@ -119,7 +119,7 @@
                                             <td>@khach.QUOCTICH</td>
                                             <td class="text-center">
                                                 <a href="@Url.Action("EditTourist", "Tourist", new { maKH = khach.MAKH })" class="edit"><button type="button" class="btn" style="background-color:white"><i class='fa fa-edit' style="color:forestgreen;font-size:20px"></i></button></a>
-                                            </td>                              
+                                            </td>
                                             <td class="text-center">
                                                 <a href="@Url.Action("DeleteTourist", "Tourist", new { maKH = khach.MAKH })" class="delete"><button type="button" class="btn" style="background-color:white"><i class="fa fa-trash" style="color:red;font-size:20px"></i></button></a>
                                             </td>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-            </div>                                       
+            </div>
         </div>
     </div>
 </div>

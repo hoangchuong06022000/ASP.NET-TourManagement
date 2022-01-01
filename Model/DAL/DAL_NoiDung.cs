@@ -15,6 +15,27 @@ namespace Model.DAL
             QLDLEntity db = new QLDLEntity();
             return db.NOIDUNGs.ToList();
         }
+        public List<NOIDUNG> GetNDBySearch(string str)
+        {
+            QLDLEntity db = new QLDLEntity();
+            List<NOIDUNG> listNoiDung = new List<NOIDUNG>();
+            List<TOURDULICH> list = db.TOURDULICHes.Where(x => x.MATOUR.Contains(str) || x.TENGOI.Contains(str) || x.DACDIEM.Contains(str)).ToList();
+            foreach (TOURDULICH tour in list)
+            {
+                List<DOANDULICH> listDoan = new List<DOANDULICH>();
+                listDoan = db.DOANDULICHes.Where(c => c.MATOUR.Equals(tour.MATOUR)).ToList();
+                foreach (DOANDULICH doan in listDoan)
+                {
+                    List<NOIDUNG> listND = new List<NOIDUNG>();
+                    listND = db.NOIDUNGs.Where(c => c.MADOAN.Equals(doan.MADOAN)).ToList();
+                    foreach (NOIDUNG nd in listND)
+                    {
+                        listNoiDung.Add(nd);
+                    }
+                }
+            }
+            return listNoiDung;
+        }
         public NOIDUNG GetNDById(string maDoan)
         {
             QLDLEntity db = new QLDLEntity();
